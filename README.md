@@ -1,4 +1,4 @@
-# Python Data Handling and Manipulation Examples
+## Set representation of data
 
 This repository contains Python code examples for handling and manipulating data, showcasing various techniques for working with data in a structured manner. The examples cover topics such as handling categorical variables, entity-attribute relationships, dealing with multivalued attributes, set operations, identifying unique values, graph data representation, handling tags or labels, and dealing with unique identifiers.
 
