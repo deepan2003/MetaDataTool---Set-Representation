@@ -1,0 +1,181 @@
+#1 Handling Categorical Variables:
+
+code:
+import pandas as pd
+data="C:\Employee.csv"
+df = pd.read_csv(data)
+b=pd.DataFrame(df)
+b_encoded = pd.get_dummies(df, columns=['City'],prefix_sep='_')
+b_encoded_2 = b_encoded.groupby(level=0, axis=1).max()
+print(b_encoded_2)
+
+
+#2 Entity-Attribute Relationships:
+
+code:
+import pandas as pd
+data="C:\Employee.csv"
+df = pd.read_csv(data)
+employees = {
+    'gender':    ['male','female'],
+    'City':      ['bangalore','pune'],
+    'education': ['bachelor','master'],
+}
+table=pd.DataFrame(employees)
+print(table)
+
+
+#3 Dealing with Multivalued Attributes:
+
+code:
+import pandas as pd
+data="C:\Employee.csv"
+df = pd.read_csv(data)
+employees = {
+    'joining year': ['2017', '2013', '2014'],
+    'Courses': [
+        ['Bachelors', 'Masters'],
+        ['PHD','Bachelors','Masters'],
+        ['Bachelors','masters']
+    ]
+}
+table=pd.DataFrame(employees)
+print(table)
+
+
+#4 Set Operations for Data Manipulation:
+
+code:
+import pandas as pd
+data="C:\Employee.csv"
+df = pd.read_csv(data)
+table=pd.DataFrame(df)
+a=set(df.PaymentTier)
+b=set(df.Age)
+union_result =a.union(b)
+print("Union:", union_result)
+intersection_result = a.difference(b)
+print("Intersection:", intersection_result)
+difference_result = a.difference(b)  # or simply set_A - set_B
+print("Difference:", difference_result)
+c=set(df.ExperienceInCurrentDomain)
+complement_result = c - a
+print(complement_result)
+symmetric_difference_result = c.symmetric_difference(a)
+print("Symmetric Difference:", symmetric_difference_result)
+
+
+#5 Identifying Unique Values:
+
+import pandas as pd
+data="C:\Employee.csv"
+df = pd.read_csv(data)
+table=pd.DataFrame(df)
+table_2=table.head(1000)
+unique_education = table_2['Education'].unique()
+unique_joining_year = table_2['JoiningYear'].unique()
+unique_city = table_2['City'].unique()
+unique_payment_tier = table_2['PaymentTier'].unique()
+unique_age = table_2['Age'].unique()
+unique_gender = table_2['Gender'].unique()
+unique_everbenched = table_2['EverBenched'].unique()
+unique_experience = table_2['ExperienceInCurrentDomain'].unique()
+unique_leave_or_not = table_2['LeaveOrNot'].unique()
+print("Unique Education Levels:", unique_education)
+print("Unique Joining Years:", unique_joining_year)
+print("Unique Cities:", unique_city)
+print("Unique Payment Tiers:", unique_payment_tier)
+print("Unique Ages:", unique_age)
+print("Unique Genders:", unique_gender)
+print("Unique EverBenched Values:", unique_everbenched)
+print("Unique Experience Levels:", unique_experience)
+print("Unique LeaveOrNot Values:", unique_leave_or_not) 
+
+
+#6 Graph Data Representation:
+
+code:
+import pandas as pd
+graph = {
+    'Education': {'bachelor','PHD','Master'},
+    'Payment': {'3', '1'},
+    'Age': {'34', '28'},
+    'Gender': {'male', 'female'},
+    'Domain': {'0','3','5','2'}
+}
+def find_neighbors(node):
+          return graph.get(node, set())
+node = 'Education'
+neighbors = find_neighbors(node)
+print(f"Neighbors of {node}: {neighbors}")
+graph['Age'] = {'22'}
+data="C:\Employee.csv"
+df = pd.read_csv(data)
+table=pd.DataFrame(df)
+
+#7 Handling Tags or Labels:
+
+code:
+import pandas as pd
+data="C:\Employee.csv"
+df = pd.read_csv(data)
+table=pd.DataFrame(df)
+table_2=table.head(10)
+tags = ['Tag1', 'Tag2', 'Tag1', 'Tag3', 'Tag3', 'Tag1', 'Tag2', 'Tag1', 'Tag4','Tag5']
+table_2['Tags'] = tags
+print(tags)
+labels = [0, 1, 0, 1, 1, 0, 0, 1, 0 ,1]
+table_2['Labels'] = labels
+print(labels)
+a=table_2.to_csv('modified_dataset.csv', index=False)
+print(a)
+table_2 = pd.read_csv('modified_dataset.csv')
+tag1_data = table_2[table_2['Tags'] == 'Tag1']
+tag2_data = table_2[table_2['Tags'] == 'Tag2']
+tag3_data = table_2[table_2['Tags'] == 'Tag3']
+tag4_data = table_2[table_2['Tags'] == 'Tag4']
+tag5_data = table_2[table_2['Tags'] == 'Tag5']
+print("Data with Tag1:")
+print(tag1_data)
+print("\nData with Tag2:")
+print(tag2_data)
+print("\nData with Tag3:")
+print(tag3_data)
+print("\nData with Tag4:")
+print(tag4_data)
+print("\nData with Tag5:")
+print(tag5_data)
+label_0_data = table_2[table_2['Labels'] == 0]
+print(label_0_data)
+label_1_data = table_2[table_2['Labels'] == 1]
+print(label_1_data)
+
+#8 Dealing with Unique Identifiers:
+
+code:
+import pandas as pd
+
+data="C:\Employee.csv"
+df = pd.read_csv(data)
+table=pd.DataFrame(df)
+
+table['UniqueID'] = table.apply(lambda row: '-'.join(map(str, row)), axis=1)
+print(table)
+
+target_unique_id = "Bachelors-2013-Pune-1-28-Female-No-3-1"
+target_row = table.loc[table['UniqueID'] == target_unique_id]
+print(target_row)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
